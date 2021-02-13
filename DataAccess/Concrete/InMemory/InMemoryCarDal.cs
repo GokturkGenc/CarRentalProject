@@ -16,12 +16,12 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                    new Car{CarId=1, BrandId=1, ColorId=4, DailyPrice=450,ModelYear=2020, Description ="kaliteli araba" },
-                    new Car{CarId=2, BrandId=1, ColorId=2, DailyPrice=320,ModelYear=2013, Description ="uygun fiyatlı" },
-                    new Car{CarId=3, BrandId=2, ColorId=6, DailyPrice=510,ModelYear=2019, Description ="lüks araba" },
-                    new Car{CarId=4, BrandId=3, ColorId=1, DailyPrice=480,ModelYear=2019, Description ="dağ arabası" },
-                    new Car{CarId=5, BrandId=2, ColorId=3, DailyPrice=730,ModelYear=2021, Description ="offroad kaliteli" },
-                    new Car{CarId=6, BrandId=1, ColorId=2, DailyPrice=550,ModelYear=2019, Description ="alçak spor " },
+                    new Car{CarId=1, BrandId=1, ColorId=4, DailyPrice=450,ModelYear=new DateTime (2020), Description ="kaliteli araba" },
+                    new Car{CarId=2, BrandId=1, ColorId=2, DailyPrice=320,ModelYear=new DateTime (2013), Description ="uygun fiyatlı" },
+                    new Car{CarId=3, BrandId=2, ColorId=6, DailyPrice=510,ModelYear=new DateTime (2019), Description ="lüks araba" },
+                    new Car{CarId=4, BrandId=3, ColorId=1, DailyPrice=480,ModelYear=new DateTime (2019), Description ="dağ arabası" },
+                    new Car{CarId=5, BrandId=2, ColorId=3, DailyPrice=730,ModelYear=new DateTime (2021), Description ="offroad kaliteli" },
+                    new Car{CarId=6, BrandId=1, ColorId=2, DailyPrice=550,ModelYear=new DateTime (2019), Description ="alçak spor " },
 
             };
         }

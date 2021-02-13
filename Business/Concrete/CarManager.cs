@@ -11,7 +11,6 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _cardal;
-        InMemoryCarDal _inMemoryCarDal;
 
         public CarManager(ICarDal cardal)
         {

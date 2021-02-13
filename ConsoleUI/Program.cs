@@ -1,7 +1,5 @@
 ﻿using Business.Concrete;
-using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using System;
 
 namespace ConsoleUI
@@ -17,9 +15,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(color.ColorName);
             }
-
-
-
         }
 
         private static void CarTest()
@@ -31,5 +26,6 @@ namespace ConsoleUI
             }
         }
     }
+
+
 }
-//son

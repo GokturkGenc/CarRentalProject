@@ -11,14 +11,13 @@ namespace Core.DataAccess
     {   //her yeni sınıf için tekrar tekrar yazmak yerine bu arayüzü oluşturduk ve T değişkenini verdik
         //bu T değişkeni herhangi bi sınıfa IEntityRepository yi inheritance yaptığımızda belirlediğimiz 
         //değişken uzerinden buradaki bilgileri vermektedir (ICarDal, IBrandDal üzerinde olduğu gibi)
+       
+        
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
-
         T Get(Expression<Func<T, bool>> filter);
-
         void Add(T entity);
         void Delete(T entity);
         void Update(T entity);
-        //List<T> GetAllById(int CarId);
 
     }
 }
