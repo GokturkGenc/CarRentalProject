@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -18,19 +20,31 @@ namespace Business.Concrete
             _cardal = cardal;
         }
 
-        public static IEnumerable<object> GetProductDetails()
+        public IResult Add(Car car)
         {
-            throw new NotImplementedException();
+            if (car.CarName.Length<2)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+            }
+            _cardal.Add(car);
+            
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _cardal.GetAll();
+            if (DateTime.Now.Hour ==21)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+
+
+            return new SuccessDataResult<List<Car>>(_cardal.GetAll(),Messages.CarsListed);
         }
 
-        public List<Car> GetAllByBrandId(int id)
+        public IDataResult<List<Car>> GetAllByBrandId(int id)
         {
-            return _cardal.GetAll(p => p.BrandId == id);
+            return new SuccessDataResult<List<Car>> (_cardal.GetAll(p => p.BrandId == id));
         }
 
         public List<Car> GetAllByColorId(int id)
@@ -38,9 +52,19 @@ namespace Business.Concrete
             return _cardal.GetAll(p => p.ColorId == id);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<Car>> GetByDailyPrice(decimal min,decimal max)
         {
-            return _cardal.GetCarDetails();
+            return new SuccessDataResult<List<Car>> (_cardal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
+        }
+
+        public IDataResult<Car> GetById(int carId)
+        {
+            return new SuccessDataResult<Car> (_cardal.Get(p => p.CarId == carId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetails());
         }
     }
 }
