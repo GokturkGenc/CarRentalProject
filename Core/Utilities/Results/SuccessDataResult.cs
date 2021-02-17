@@ -21,7 +21,7 @@ namespace Core.Utilities.Results
 
         }
 
-        public SuccessDataResult() : base(default, true)
+        public SuccessDataResult(object getAll) : base(default, true)
         {
 
         }

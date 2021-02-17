@@ -31,6 +31,18 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
+        public IResult Delete(Car car)
+        {
+            _cardal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
+        }
+
+        public IResult Update(Car car)
+        {
+            _cardal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
+        }
+
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour ==21)
@@ -57,14 +69,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>> (_cardal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
         }
 
-        public IDataResult<Car> GetById(int carId)
+        public IDataResult<Car> GetById(int Id)
         {
-            return new SuccessDataResult<Car> (_cardal.Get(p => p.CarId == carId));
+            return new SuccessDataResult<Car> (_cardal.Get(p => p.Id == Id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetails());
         }
+
+        
     }
 }
