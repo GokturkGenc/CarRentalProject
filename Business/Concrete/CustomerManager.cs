@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Customer>> GetAllByCompanyName(string companyName)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomersListed);
         }
 
         public IResult Update(Customer customer)

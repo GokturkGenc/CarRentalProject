@@ -33,17 +33,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
         }
 
         public IDataResult<Color> GetByColorId(int colorId)
         {
-            throw new NotImplementedException();
-        }
-
-        public IDataResult<Color> GetByColorName(string colorName)
-        {
-            throw new NotImplementedException();
+            return (IDataResult<Color>)_colorDal.Get(c => c.ColorId == colorId);
         }
 
         public IResult Update(Color color)

@@ -12,70 +12,73 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //CarTest();
-
-            //DailyPriceTest();
-
-            //BrandAndId();
-
-            //GetUserNames();
-
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            {
-                foreach (var rental in rentalManager.GetAll().Data)
-                {
-                    Console.WriteLine(rental.RentDate);
-                }
-            }
+            //BrandTest();
+            //ColorTest();
+            //RentalTest();
+            //CustomerTest();
+            UserTest();
 
         }
 
-        private static void GetUserNames()
+        private static void UserTest()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            foreach (var user in userManager.GetAll().Data)
+            var result = userManager.GetAll();
+            foreach (var user in result.Data)
             {
-                Console.WriteLine(user.FirstName + "    " + user.LastName);
+                Console.WriteLine(user.FirstName); 
             }
         }
 
-        private static void BrandAndId()
+        private static void CustomerTest()
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails().Data)
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.GetAll();
+            foreach (var customer in result.Data)
             {
-                Console.WriteLine(car.BrandName + " / " + car.Id);
+                Console.WriteLine(customer.CustomerId + "    " + customer.CompanyName);
             }
         }
 
-        private static void DailyPriceTest()
+        private static void RentalTest()
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-
-            foreach (var car in carManager.GetAll().Data)
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetAll();
+            foreach (var rental in result.Data)
             {
-                Console.WriteLine(car.DailyPrice);
+                Console.WriteLine(rental.RentalId + "    " + rental.RentDate + "    " + rental.ReturnDate);
+            }
+        }
+
+        private static void ColorTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            var result = colorManager.GetAll();
+            foreach (var color in result.Data)
+            {
+                Console.WriteLine(color.ColorId + " " + color.ColorName);
+            }
+
+        }
+
+        private static void BrandTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            var result = brandManager.GetAll();
+            foreach (var brand in result.Data)
+            {
+                Console.WriteLine(brand.BrandId + " " + brand.BrandName);
             }
         }
 
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-
             var result = carManager.GetCarDetails();
-
-            if (result.Success == true)
+            foreach (var car in result.Data)
             {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine(car.BrandName + " \t " + car.Id);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
+                Console.WriteLine(car.CarId + " " + car.BrandName + " " + car.ColorName + " " + car.DailyPrice);
             }
         }
     }
-
-
 }

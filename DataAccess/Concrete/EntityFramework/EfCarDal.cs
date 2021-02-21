@@ -13,32 +13,24 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarListContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             using (CarListContext context = new CarListContext())
             {
-                //var result = from c in context.Tbl_Cars
-                //             join b in context.Tbl_Brands
-                //             on c.BrandId equals b.BrandId                          
-                //             select new CarDetailDto
-                //             {
-                //                 Id = c.Id,
-                //                 BrandName = b.BrandName,
-                                 
-                //             };
                 var result = from car in context.Tbl_Cars
-                             join b in context.Tbl_Brands
-                             on car.BrandId equals b.BrandId
-                             join c in context.Tbl_Colors
-                             on car.ColorId equals c.ColorId
+                             join bra in context.Tbl_Brands
+                             on car.BrandId equals bra.BrandId
+                             join color in context.Tbl_Colors
+                             on car.ColorId equals color.ColorId
                              select new CarDetailDto
                              {
-
                                  CarId = car.CarId,
+                                 BrandName = bra.BrandName,
+                                 ColorName = color.ColorName,
+                                 DailyPrice = car.DailyPrice,
+                                 ModelYear = car.ModelYear,
                                  Description = car.Description,
-                                 BrandName = b.BrandName,
-                                 ColorName = c.ColorName,
-                                 DailyPrice = car.DailyPrice
+
                              };
                 return result.ToList();
             }

@@ -13,11 +13,11 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _cardal;
+        ICarDal _carDal;
 
         public CarManager(ICarDal cardal)
         {
-            _cardal = cardal;
+            _carDal = cardal;
         }
 
         public IResult Add(Car car)
@@ -26,57 +26,57 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CarNameInvalid);
             }
-            _cardal.Add(car);
+            _carDal.Add(car);
             
             return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
         {
-            _cardal.Delete(car);
+            _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
 
         public IResult Update(Car car)
         {
-            _cardal.Update(car);
+            _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour ==21)
-            {
-                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 15)
+            //{
+            //    return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            //}
 
 
-            return new SuccessDataResult<List<Car>>(_cardal.GetAll(),Messages.CarsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetAllByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>> (_cardal.GetAll(p => p.BrandId == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id));
         }
 
         public List<Car> GetAllByColorId(int id)
         {
-            return _cardal.GetAll(p => p.ColorId == id);
+            return _carDal.GetAll(p => p.ColorId == id);
         }
 
-        public IDataResult<List<Car>> GetByDailyPrice(decimal min,decimal max)
+        public IDataResult<List<Car>> GetAllByDailyPrice(decimal min,decimal max)
         {
-            return new SuccessDataResult<List<Car>> (_cardal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
+            return new SuccessDataResult<List<Car>> (_carDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max));
         }
 
         public IDataResult<Car> GetById(int Id)
         {
-            return new SuccessDataResult<Car> (_cardal.Get(p => p.Id == Id));
+            return new SuccessDataResult<Car> (_carDal.Get(p => p.CarId == Id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_cardal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
         
