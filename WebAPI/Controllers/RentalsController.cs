@@ -1,6 +1,4 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class RentalsController : ControllerBase
     {
-        ICarService _carService;
+        IRentalService _rentalService;
 
-        public CarsController(ICarService carService)
+        public RentalsController(IRentalService rentalService)
         {
-            _carService = carService;
+            _rentalService = rentalService;
         }
 
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            var result = _carService.GetAll();
+            var result = _rentalService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -35,9 +33,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult Get(int id)
+        public IActionResult GetAll()
         {
-            var result = _carService.GetById(id);
+            var result = _rentalService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -48,9 +46,9 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(Rental rental)
         {
-            var result = _carService.Add(car);
+            var result = _rentalService.Add(rental);
             if (result.Success)
             {
                 return Ok(result);
@@ -59,9 +57,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update([FromBody] Car car)
+        public IActionResult Update([FromBody] Rental rental)
         {
-            var result = _carService.Update(car);
+            var result = _rentalService.Update(rental);
             if (result.Success)
             {
                 return Ok(result);
@@ -70,9 +68,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete([FromBody] Car car)
+        public IActionResult Delete([FromBody] Rental rental)
         {
-            var result = _carService.Delete(car);
+            var result = _rentalService.Delete(rental);
             if (result.Success)
             {
                 return Ok(result);
