@@ -23,6 +23,8 @@ namespace Business.Concrete
             _carDal = cardal;
         }
 
+
+        [Validate]
         public IResult Add(Car car)
         {
 
