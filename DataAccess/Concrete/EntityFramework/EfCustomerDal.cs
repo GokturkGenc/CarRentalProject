@@ -18,15 +18,15 @@ namespace DataAccess.Concrete.EntityFramework
             using (CarListContext context = new CarListContext())
             {
                 var result = from cust in context.Tbl_Customers
-                         join user in context.Tbl_Users
-                         on cust.UserId equals user.UserId
-                         select new CustomerDetailDto
-                         {
-                             UserId = user.UserId,
-                             FirstName = user.FirstName,
-                             CustomerId = cust.CustomerId,
-                         };
-                         return result.ToList();
+                             join user in context.Tbl_Users
+                             on cust.UserId equals user.UserId
+                             select new CustomerDetailDto
+                             {
+                                 UserId = user.UserId,
+                                 FirstName = user.FirstName,
+                                 CustomerId = cust.CustomerId,
+                             };
+                return result.ToList();
             }
         }
     }

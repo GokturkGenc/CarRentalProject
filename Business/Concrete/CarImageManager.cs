@@ -47,7 +47,8 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
-            carImage.ImagePath = FileHelper.UpdateAsync(_carImageDal.Get(p => p.ImageId == carImage.ImageId).ImagePath, file);
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\CarImages")) + _carImageDal.Get(p => p.ImageId == carImage.ImageId).ImagePath;
+            carImage.ImagePath = FileHelper.UpdateAsync(oldpath, file);
             carImage.ImageDate = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult();
@@ -57,8 +58,10 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Delete(CarImage carImage)
         {
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\CarImages")) + _carImageDal.Get(p => p.ImageId == carImage.ImageId).ImagePath;
+
             IResult result = BusinessRules.Run(
-                FileHelper.DeleteAsync(_carImageDal.Get(p => p.ImageId == carImage.ImageId).ImagePath));
+                FileHelper.DeleteAsync(oldpath));
 
             if (result != null)
             {
@@ -69,7 +72,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<CarImage> GetById(int id)
+        public IDataResult<CarImage> Get(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.ImageId == id));
         }
@@ -95,7 +98,7 @@ namespace Business.Concrete
         {
             try
             {
-                string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images\default.jpg");
+                string path = @"\Images\default.jpg";
                 var result = _carImageDal.GetAll(c => c.CarId == id).Any();
                 if (!result)
                 {
@@ -123,7 +126,7 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
-
         }
+
     }
 }

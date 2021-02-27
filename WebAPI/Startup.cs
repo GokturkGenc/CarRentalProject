@@ -35,6 +35,7 @@ namespace WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -46,6 +47,8 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -53,5 +56,6 @@ namespace WebAPI
                 endpoints.MapControllers();
             });
         }
+
     }
 }

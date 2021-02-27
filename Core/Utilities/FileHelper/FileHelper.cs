@@ -82,7 +82,7 @@ namespace Core.Utilities.FileHelper
 
             //string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images");
 
-            string path = Environment.CurrentDirectory + @"\CarPhotos\Images";
+            string path = Environment.CurrentDirectory + @"\CarImages\Images";
 
             string result = $@"{path}\{creatingUniqueFilename}";
 
