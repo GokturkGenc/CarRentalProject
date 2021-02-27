@@ -49,6 +49,11 @@ namespace Business.Constants
         public static string BrandUpdated = "Marka Bilgileri Güncellendi";
         public static string BrandsListed = "Markalar Listelendi";
 
-        
+        //for CarImages
+        public static string ImageAdded = "Resim Eklendi";
+        public static string ImageDeleted = "Resim Silindi";
+        public static string ImageUpdated = "Resim Güncellendi";
+        public static string ImageListed = "Resimler Listelendi";
+        internal static string FailAddedImageLimit = "Yükleme limiti aşılmıştır";
     }
 }
