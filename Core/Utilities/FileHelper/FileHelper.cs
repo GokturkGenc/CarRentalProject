@@ -1,9 +1,11 @@
 ﻿using Core.Utilities.Results;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Core.Utilities.FileHelper
 {
@@ -36,7 +38,6 @@ namespace Core.Utilities.FileHelper
 
             try
             {
-                //File.Copy(sourcePath,result);
 
                 if (sourcePath.Length > 0)
                 {
@@ -72,7 +73,7 @@ namespace Core.Utilities.FileHelper
 
         public static (string newPath, string Path2) newPath(IFormFile file)
         {
-            FileInfo ff = new FileInfo(file.FileName);
+            System.IO.FileInfo ff = new System.IO.FileInfo(file.FileName);
             string fileExtension = ff.Extension;
 
             var creatingUniqueFilename = Guid.NewGuid().ToString("N")
@@ -82,7 +83,7 @@ namespace Core.Utilities.FileHelper
 
             //string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images");
 
-            string path = Environment.CurrentDirectory + @"\CarImages\Images";
+            string path = Environment.CurrentDirectory + @"\wwwroot\Images";
 
             string result = $@"{path}\{creatingUniqueFilename}";
 
