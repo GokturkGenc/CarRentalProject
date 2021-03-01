@@ -16,18 +16,7 @@ namespace ConsoleUI
             //ColorTest();
             //RentalTest();
             //CustomerTest();
-            UserTest();
 
-        }
-
-        private static void UserTest()
-        {
-            UserManager userManager = new UserManager(new EfUserDal());
-            var result = userManager.GetAll();
-            foreach (var user in result.Data)
-            {
-                Console.WriteLine(user.FirstName); 
-            }
         }
 
         private static void CustomerTest()

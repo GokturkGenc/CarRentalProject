@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Business.Constants
+﻿namespace Business.Constants
 {
     public static class Messages
     {
         //General Messages  
         public static string MaintenanceTime = "Şu anda site bakımdadır. Daha sonra deneyiniz.";
-        
+
         //for Cars
         public static string CarAdded = "Araç Eklendi";
         public static string CarDeleted = "Araç Silindi";
@@ -54,6 +50,15 @@ namespace Business.Constants
         public static string ImageDeleted = "Resim Silindi";
         public static string ImageUpdated = "Resim Güncellendi";
         public static string ImageListed = "Resimler Listelendi";
-        internal static string FailAddedImageLimit = "Yükleme limiti aşılmıştır";
+        public static string FailAddedImageLimit = "Yükleme limiti aşılmıştır";
+
+        //for Tokens,Logins,Registers
+        public static string AuthorizationDenied = "İzin Geçersiz";
+        public static string UserRegistered = "Kullanıcı kayıt oldu.";
+        public static string UserNotFound = "Kullanıcı Bulunamadı.";
+        public static string SuccessfulLogin = "Giriş Başarılı";
+        public static string UserAlreadyExists = "Kullanıcı Zaten Mevcut.";
+        public static string AccessTokenCreated = "Token Yaratıldı.";
+        public static string PasswordError = "Parola Hatalı.";
     }
 }
