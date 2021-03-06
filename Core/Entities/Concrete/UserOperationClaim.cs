@@ -1,6 +1,6 @@
 ﻿namespace Core.Entities.Concrete
 {
-    public class UserOperationClaim : IDto
+    public class UserOperationClaim : IEntity
     {
         public int UserOperationClaimId { get; set; }
         public int UserId { get; set; }

@@ -17,8 +17,8 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (CarListContext context = new CarListContext())
             {
-                var result = from cust in context.Tbl_Customers
-                             join user in context.Tbl_Users
+                var result = from cust in context.Customers
+                             join user in context.Users
                              on cust.UserId equals user.UserId
                              select new CustomerDetailDto
                              {
