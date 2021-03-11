@@ -52,7 +52,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
-        public IDataResult<List<Car>> GetAll()
+        public IDataResult<List<CarDetailDto>> GetAll()
         {
             //if (DateTime.Now.Hour == 15)
             //{
@@ -60,7 +60,7 @@ namespace Business.Concrete
             //}
 
 
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetAllByBrandId(int id)
