@@ -29,9 +29,7 @@ namespace Business.Concrete
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Car car)
         {
-
             _carDal.Add(car);
-
             return new SuccessResult(Messages.CarAdded);
 
         }
@@ -63,14 +61,13 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
         }
 
-        public IDataResult<List<Car>> GetAllByBrandId(int id)
+        public IDataResult<List<Car>> GetAllByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == brandId));
         }
-
-        public List<Car> GetAllByColorId(int id)
+        public IDataResult<List<Car>> GetAllByColorId(int colorId)
         {
-            return _carDal.GetAll(p => p.ColorId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == colorId));
         }
 
         public IDataResult<List<Car>> GetAllByDailyPrice(decimal min, decimal max)
@@ -79,11 +76,12 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<Car> GetById(int Id)
+        public IDataResult<Car> GetById(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(p => p.CarId == Id));
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.CarId == carId));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
@@ -93,7 +91,7 @@ namespace Business.Concrete
         public IResult AddTransactionalTest(Car car)
         {
             Add(car);
-            if (car.DailyPrice<100)
+            if (car.DailyPrice < 100)
             {
                 throw new Exception("");
             }

@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
+using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -18,8 +22,6 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        //[SecuredOperation("brand.add")]
-        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
@@ -42,9 +44,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.Name == brandName));
         }
 
-        public IDataResult<List<Brand>> GetById(int id)
+        public IDataResult<List<Brand>> GetById(int brandId)
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == id));
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == brandId));
         }
 
         public IResult Update(Brand brand)

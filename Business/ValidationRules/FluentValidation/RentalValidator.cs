@@ -7,7 +7,6 @@ namespace Business.ValidationRules.FluentValidation
     {
         public RentalValidator()
         {
-            RuleFor(p => p.RentalId).NotEmpty();
 
         }
     }

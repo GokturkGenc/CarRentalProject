@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -38,9 +39,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
         }
 
-        public IDataResult<Color> GetById(int colorId)
+        public IDataResult<List<Color>> GetAllByColorName(string name)
         {
-            return (IDataResult<Color>)_colorDal.Get(c => c.ColorId == colorId);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.ColorName == name));
+        }
+
+        public IDataResult<List<Color>> GetById(int colorId)
+        {
+            return (IDataResult<List<Color>>)_colorDal.Get(c => c.ColorId == colorId);
         }
 
         public IResult Update(Color color)
@@ -48,5 +54,6 @@ namespace Business.Concrete
             _colorDal.Update(color);
             return new SuccessResult(Messages.ColorUpdated);
         }
+
     }
 }

@@ -29,5 +29,4 @@ namespace Core.Utilities.Extensions
             roles.ToList().ForEach(role => claims.Add(new Claim(ClaimTypes.Role, role)));
         }
     }
-
 }

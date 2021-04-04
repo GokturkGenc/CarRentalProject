@@ -4,6 +4,7 @@ using Core.DataAccess;
 using System.Collections.Generic;
 using System.Text;
 using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {

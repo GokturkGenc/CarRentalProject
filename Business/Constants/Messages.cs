@@ -51,6 +51,10 @@
         public static string ImageUpdated = "Resim Güncellendi";
         public static string ImageListed = "Resimler Listelendi";
         public static string FailAddedImageLimit = "Yükleme limiti aşılmıştır";
+        public static string CarHaveNoImage = "Arabaya ait görsel bulunmamaktadır.";
+        public static string InvalidImageExtension = "Resim uzantısı geçersiz.";
+        public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
+        public static string CarImageMustBeExists = "Araba resmi mevcut olmalı.";
 
         //for Tokens,Logins,Registers
         public static string AuthorizationDenied = "İzin Geçersiz";
@@ -60,5 +64,6 @@
         public static string UserAlreadyExists = "Kullanıcı Zaten Mevcut.";
         public static string AccessTokenCreated = "Token Yaratıldı.";
         public static string PasswordError = "Parola Hatalı.";
+        
     }
 }
